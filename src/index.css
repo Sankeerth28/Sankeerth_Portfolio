@@ -75,3 +75,9 @@ body {
   -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
   animation: waterFill 2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
+
+/* Hero Portrait Seamless Mask */
+.hero-portrait-mask {
+  mask-image: radial-gradient(ellipse 70% 80% at 50% 46%, #000 45%, rgba(0, 0, 0, 0.75) 68%, transparent 94%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 80% at 50% 46%, #000 45%, rgba(0, 0, 0, 0.75) 68%, transparent 94%);
+}

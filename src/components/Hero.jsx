@@ -5,6 +5,7 @@ import centerImage from '../assets/hero_assets/user_suit_clean.png';
 const Hero = ({ onPreloadComplete }) => {
   const [text, setText] = useState('SANKEERTH');
   const containerRef = useRef(null);
+  const foregroundRef = useRef(null);
   const textRef = useRef(null);
   const subtitleRef = useRef(null);
   const buttonsRef = useRef(null);
@@ -45,10 +46,10 @@ const Hero = ({ onPreloadComplete }) => {
         setText(() => {
           let newText = target.split("").map((letter, index) => {
             if (index < Math.floor(iterations)) {
-              return target[index]; // Target letter
+              return target[index];
             }
             if (index < start.length) {
-              return start[index]; // Original letter
+              return start[index];
             }
             return "";
           }).join("");
@@ -62,26 +63,27 @@ const Hero = ({ onPreloadComplete }) => {
           const tl = gsap.timeline({
             onComplete: () => {
               document.body.style.overflow = 'auto'; // Unlock scroll
-              if (onPreloadComplete) onPreloadComplete(); // Unlock rest of the website
+              if (onPreloadComplete) onPreloadComplete(); // Unlock rest of website
             }
           });
 
-          // 1. Move central text container up from 50%
           const isMobile = window.innerWidth < 768;
-          tl.to(containerRef.current, {
-            top: isMobile ? "20%" : "45%",
+
+          // 1. Move central text container and foreground overlay up together
+          tl.to([containerRef.current, foregroundRef.current], {
+            top: isMobile ? "24%" : "45%",
             duration: 1.5,
             ease: "power3.inOut"
           }, "+=0.2");
 
           // 2. Fade and slide up Subtitle and Buttons
           tl.fromTo([subtitleRef.current, buttonsRef.current],
-            { y: 50, opacity: 0 },
+            { y: 40, opacity: 0 },
             { y: 0, opacity: 1, duration: 1.2, stagger: 0.2, ease: "power3.out" },
             "-=1.0"
           );
 
-          // 3. Slide image upward to center
+          // 3. Slide image upward to position
           tl.fromTo(imageRef.current,
             { y: "100vh" },
             { y: 0, duration: 1.5, ease: "power3.out" },
@@ -105,55 +107,76 @@ const Hero = ({ onPreloadComplete }) => {
       className="relative min-h-screen flex items-end justify-center bg-cover bg-center bg-no-repeat overflow-hidden"
       style={{ background: 'radial-gradient(circle at center, #1c1c24 0%, #0c0c10 55%, #000000 100%)' }}
     >
-
+      {/* 1. Backdrop Typography Layer (z-10 - BEHIND portrait) */}
       <div
         ref={containerRef}
-        className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none select-none flex flex-col items-start w-max px-4"
+        className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none select-none flex flex-col items-center justify-center w-max px-4 text-center"
       >
         <h1
           ref={textRef}
-          className="text-[16vw] md:text-[10rem] lg:text-[14rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl pr-4 md:pr-8 leading-none uppercase"
+          className="text-[16vw] md:text-[11rem] lg:text-[13.5rem] xl:text-[15rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl leading-none uppercase pr-2 md:pr-4"
         >
           {text}
         </h1>
-
-        <p
-          ref={subtitleRef}
-          className="absolute -bottom-8 left-1/2 -translate-x-1/2 md:translate-x-0 md:-bottom-12 md:left-8 text-white text-base md:text-2xl lg:text-4xl drop-shadow-md z-10 opacity-0 w-max"
-        >
-          <span className="font-bold">AI/ML</span> <span className="font-light italic text-gray-300">Engineer</span>
-        </p>
-
-        <div
-          ref={buttonsRef}
-          className="absolute -bottom-20 left-1/2 -translate-x-1/2 md:translate-x-0 md:-bottom-12 md:left-auto md:right-20 flex items-center gap-2 md:gap-4 pointer-events-auto z-10 opacity-0 w-max"
-        >
-          <a href="#contact" className="group w-8 h-8 md:w-12 md:h-12 rounded-full border border-gray-400/30 flex items-center justify-center backdrop-blur-md bg-black/20 hover:bg-white/10 hover:border-gray-400/50 transition-all duration-300 cursor-pointer">
-            <svg className="w-3 h-3 md:w-4 md:h-4 text-gray-300 transition-transform duration-300 group-hover:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M17 7L7 17M7 17H16M7 17V8" />
-            </svg>
-          </a>
-
-          <a href="#contact" className="px-4 py-1.5 md:px-6 md:py-2.5 rounded-full border border-gray-400/30 flex items-center justify-center backdrop-blur-md bg-black/20 hover:bg-white/10 hover:border-gray-400/50 transition-all cursor-pointer">
-            <span className="text-gray-300 text-xs md:text-base italic font-light tracking-wider">Contact</span>
-          </a>
-        </div>
       </div>
 
+      {/* 2. Portrait Image Layer (z-20 - IN FRONT of PORTFOLIO text, BEHIND subtitle/buttons) */}
       <div
         ref={imageRef}
-        className="relative z-10 text-white flex flex-col items-center justify-end w-full pointer-events-none translate-y-[100vh] bottom-0"
+        className="absolute inset-0 w-full h-full pointer-events-none flex items-end justify-center z-20 overflow-hidden translate-y-[100vh]"
       >
-        <div className="w-full flex justify-center md:justify-end md:pr-[18%] lg:pr-[22%] items-end">
+        <div className="w-full h-full flex items-end justify-center md:justify-start md:pl-[36%] lg:pl-[38%] xl:pl-[40%] pb-0">
           <img
             src={centerImage}
             alt="Sankeerth Naidu"
-            className="w-full max-w-[280px] sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl max-h-[82vh] md:max-h-[86vh] object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.9)]"
-            style={{
-              maskImage: 'linear-gradient(to top, transparent 0%, black 14%, black 100%)',
-              WebkitMaskImage: 'linear-gradient(to top, transparent 0%, black 14%, black 100%)'
-            }}
+            className="h-[65vh] sm:h-[72vh] md:h-[82vh] lg:h-[86vh] max-h-[900px] w-auto object-contain hero-portrait-mask"
           />
+        </div>
+      </div>
+
+      {/* 3. Foreground Subtitle & Buttons Overlay (z-30 - aligned to PORTFOLIO text box) */}
+      <div
+        ref={foregroundRef}
+        className="absolute top-[50%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 pointer-events-none select-none w-max px-4 flex justify-between"
+      >
+        <div className="relative w-full">
+          {/* Spacer element with identical typography dimensions */}
+          <h1 className="text-[16vw] md:text-[11rem] lg:text-[13.5rem] xl:text-[15rem] font-black tracking-tighter invisible leading-none uppercase pr-2 md:pr-4">
+            PORTFOLIO
+          </h1>
+
+          {/* Subtitle on the LEFT directly under 'P' */}
+          <div
+            ref={subtitleRef}
+            className="absolute -bottom-8 md:-bottom-12 left-0 z-30 opacity-0 pointer-events-auto"
+          >
+            <p className="text-white text-lg sm:text-2xl md:text-3xl lg:text-4xl drop-shadow-lg tracking-tight font-medium w-max">
+              <span className="font-bold text-white">AI/ML</span> <span className="font-light italic text-gray-300">Engineer</span>
+            </p>
+          </div>
+
+          {/* Action buttons on the RIGHT directly under 'O' */}
+          <div
+            ref={buttonsRef}
+            className="absolute -bottom-8 md:-bottom-12 right-2 md:right-4 z-30 flex items-center gap-2 sm:gap-3 md:gap-4 opacity-0 pointer-events-auto w-max"
+          >
+            <a
+              href="#contact"
+              className="group w-9 h-9 md:w-12 md:h-12 rounded-full border border-gray-400/30 flex items-center justify-center backdrop-blur-md bg-black/40 hover:bg-white/10 hover:border-gray-400/50 transition-all duration-300 cursor-pointer"
+              aria-label="Contact Section"
+            >
+              <svg className="w-3.5 h-3.5 md:w-4 md:h-4 text-gray-300 transition-transform duration-300 group-hover:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 7L7 17M7 17H16M7 17V8" />
+              </svg>
+            </a>
+
+            <a
+              href="#contact"
+              className="px-4 py-1.5 md:px-6 md:py-2.5 rounded-full border border-gray-400/30 flex items-center justify-center backdrop-blur-md bg-black/40 hover:bg-white/10 hover:border-gray-400/50 transition-all cursor-pointer"
+            >
+              <span className="text-gray-200 text-xs md:text-base italic font-light tracking-wider">Contact</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
@@ -161,3 +184,8 @@ const Hero = ({ onPreloadComplete }) => {
 };
 
 export default Hero;
+
+
+
+
+
