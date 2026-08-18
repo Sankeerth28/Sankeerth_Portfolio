@@ -17,11 +17,11 @@ function App() {
   }
 
   return (
-    <main>
+    <main className="w-full bg-[#050505] min-h-screen max-w-[2560px] mx-auto overflow-x-hidden">
       <Hero onPreloadComplete={() => setPreloaderComplete(true)} />
       
       {preloaderComplete && (
-        <div className="animate-fade-in-up">
+        <div className="animate-fade-in-up w-full">
           <Navbar />
           <About />
           <Services />

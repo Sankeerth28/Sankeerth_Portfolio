@@ -52,7 +52,7 @@ const ContactSection = () => {
     };
 
     return (
-        <div id="contact" className="relative min-h-screen text-white font-sans flex items-center overflow-hidden [clip-path:inset(0)]">
+        <div id="contact" className="relative min-h-screen text-white font-sans flex items-center overflow-hidden bg-black/90 py-12 sm:py-16">
 
             {/* Background Video */}
             <video 
@@ -60,55 +60,55 @@ const ContactSection = () => {
                 loop 
                 muted 
                 playsInline
-                className="fixed top-0 left-0 w-full h-[100vh] object-cover z-0"
+                className="absolute inset-0 w-full h-full object-cover z-0 opacity-40 pointer-events-none"
             >
                 <source src={contactBgVideo} type="video/mp4" />
             </video>
 
             {/* Dark Overlay */}
-            <div className="absolute inset-0 bg-black/70 z-0 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black z-0 pointer-events-none"></div>
 
-            <div className="w-full max-w-7xl mx-auto px-6 md:px-16 py-12 flex flex-col lg:flex-row gap-20 lg:gap-32 relative z-10">
+            <div className="w-full max-w-7xl mx-auto px-5 sm:px-8 md:px-16 py-8 flex flex-col lg:flex-row gap-12 sm:gap-16 lg:gap-32 relative z-10">
 
                 {/* Left Side: Contact Info */}
                 <div className="w-full lg:w-5/12 flex flex-col justify-start">
-                    <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl mb-16">
+                    <h2 className="text-4xl sm:text-5xl md:text-6xl font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl mb-8 sm:mb-12 md:mb-16 text-center md:text-left">
                         Get in touch
                     </h2>
 
-                    <div className="flex flex-col gap-10">
+                    <div className="flex flex-col gap-6 sm:gap-8 md:gap-10">
                         {/* Email */}
-                        <div className="hidden md:block">
-                            <p className="text-gray-400 text-sm mb-2">Email:</p>
-                            <a href="mailto:sankeerth2004@gmail.com" className="text-xl tracking-wide hover:text-[#ccff00] transition-colors">
+                        <div className="text-center md:text-left">
+                            <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Email:</p>
+                            <a href="mailto:sankeerth2004@gmail.com" className="text-lg sm:text-xl tracking-wide hover:text-[#ccff00] transition-colors break-all">
                                 sankeerth2004@gmail.com
                             </a>
                         </div>
 
                         {/* Location / Status */}
-                        <div className="hidden md:block">
-                            <p className="text-gray-400 text-sm mb-2">Status:</p>
-                            <p className="text-xl tracking-wide text-gray-200">Open to AI/ML Opportunities & Full-Time Roles</p>
+                        <div className="text-center md:text-left">
+                            <p className="text-gray-400 text-xs sm:text-sm mb-1 sm:mb-2">Status:</p>
+                            <p className="text-base sm:text-lg md:text-xl tracking-wide text-gray-200">Open to AI/ML Opportunities & Full-Time Roles</p>
                         </div>
 
                         {/* Follow Us */}
-                        <div className="mt-4 flex flex-col items-center md:items-start">
-                            <p className="text-gray-400 text-sm mb-4">Connect with me</p>
+                        <div className="mt-2 sm:mt-4 flex flex-col items-center md:items-start">
+                            <p className="text-gray-400 text-xs sm:text-sm mb-3 sm:mb-4">Connect with me</p>
                             <div className="flex items-center justify-center md:justify-start gap-3">
-                                <a href="https://www.linkedin.com/in/sankeerthnaidu" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ccff00] hover:text-black transition-colors" title="LinkedIn">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <a href="https://www.linkedin.com/in/sankeerthnaidu" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ccff00] hover:text-black transition-colors" title="LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
                                         <rect width="4" height="12" x="2" y="9"/>
                                         <circle cx="4" cy="4" r="2"/>
                                     </svg>
                                 </a>
-                                <a href="https://github.com/Sankeerth28" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ccff00] hover:text-black transition-colors" title="GitHub">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <a href="https://github.com/Sankeerth28" target="_blank" rel="noopener noreferrer" className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ccff00] hover:text-black transition-colors" title="GitHub">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
                                     </svg>
                                 </a>
-                                <a href="mailto:sankeerth2004@gmail.com" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ccff00] hover:text-black transition-colors" title="Email">
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <a href="mailto:sankeerth2004@gmail.com" className="w-11 h-11 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ccff00] hover:text-black transition-colors" title="Email">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                         <rect width="20" height="16" x="2" y="4" rx="2"/>
                                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                                     </svg>

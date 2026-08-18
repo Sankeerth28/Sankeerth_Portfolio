@@ -99,28 +99,28 @@ const About = () => {
   }, []);
 
   return (
-    <section id="about" className="min-h-screen bg-[#050505] text-white pt-24 pb-0 px-6 md:px-16 flex flex-col justify-between relative overflow-hidden">
+    <section id="about" className="min-h-screen bg-[#050505] text-white pt-20 sm:pt-24 pb-0 px-5 sm:px-8 md:px-16 flex flex-col justify-between relative overflow-hidden">
       <div className="max-w-7xl mx-auto w-full z-10">
-        <h2 ref={introMobileRef} className="lg:hidden text-center text-[18vw] md:text-[8rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl leading-none mb-10 md:mb-16">
+        <h2 ref={introMobileRef} className="lg:hidden text-center text-5xl sm:text-7xl md:text-[8rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl leading-none mb-8 md:mb-16">
           Intro
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16 lg:gap-24 items-center">
           <div className="relative group flex justify-center lg:justify-start pl-0 lg:pl-12">
             <div className="absolute inset-0 bg-blue-500/10 blur-3xl rounded-full transform -translate-y-4 scale-75 group-hover:scale-95 transition-transform duration-500 pointer-events-none"></div>
             <img
               src={aboutImage}
               alt="Sankeerth Naidu"
-              className="w-56 sm:w-64 md:w-80 lg:w-96 max-h-[480px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)] filter brightness-[1.02] contrast-[1.02] relative z-10 transition-transform duration-500 hover:scale-[1.02]"
+              className="w-48 sm:w-64 md:w-80 lg:w-96 max-h-[480px] object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.8)] filter brightness-[1.02] contrast-[1.02] relative z-10 transition-transform duration-500 hover:scale-[1.02]"
             />
           </div>
 
-          <div className="flex flex-col justify-center space-y-8 z-10 w-full px-4 md:px-0">
-            <h2 ref={introDesktopRef} className="hidden lg:block text-[11rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl leading-none">
+          <div className="flex flex-col justify-center space-y-6 sm:space-y-8 z-10 w-full px-0 sm:px-2 md:px-0">
+            <h2 ref={introDesktopRef} className="hidden lg:block text-[9rem] xl:text-[11rem] font-black tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-300 to-gray-800 drop-shadow-2xl leading-none">
               Intro
             </h2>
-            <div className="relative bg-white/5 backdrop-blur-md p-6 md:p-10 rounded-3xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-white/[0.07] transition-colors duration-300 text-center lg:text-left">
-              <p ref={textRef} className="text-gray-300 text-base md:text-lg lg:text-xl leading-relaxed font-light">
+            <div className="relative bg-white/5 backdrop-blur-md p-5 sm:p-6 md:p-10 rounded-2xl sm:rounded-3xl border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] hover:bg-white/[0.07] transition-colors duration-300 text-center lg:text-left">
+              <p ref={textRef} className="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl leading-relaxed font-light">
                 {aboutWords.map((wordObj, index) => (
                   <React.Fragment key={index}>
                     <span className={`word ${wordObj.className || ''}`}>
